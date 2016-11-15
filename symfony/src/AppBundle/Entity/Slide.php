@@ -24,7 +24,7 @@ class Slide
     /**
      * @var array
      *
-     * @ORM\Column(name="content", type="json_array")
+     * @ORM\Column(name="content", type="text")
      */
     private $content;
 

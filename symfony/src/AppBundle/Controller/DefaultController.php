@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -24,7 +25,6 @@ class DefaultController extends Controller
      */
     public function slideAction(Request $request, $slide_id)
     {
-        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Slide');
 
         if($slide_id) {
@@ -37,7 +37,7 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('The slide does not exist');
         }
 
-        return $this->json(json_decode($serializer->serialize($slide, 'json')));
+        return new Response($slide->getContent());
     }
 
     /**

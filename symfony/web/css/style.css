@@ -1,0 +1,80 @@
+body {
+	font-family: 'Open Sans';
+	background: #f0f0f0;
+	margin: 0;
+	color: #333333;
+}
+
+.vimbox {
+    display: table;
+    width: 100%;
+    border-spacing: 10px;
+}
+.left, .right {
+    display: table-cell;
+}
+
+.right {
+	width: 210px;
+}
+
+.left, .right {
+	vertical-align: top;
+}
+
+
+.content {
+	background: white;
+	border-radius: 8px;
+	
+}
+
+.content {
+	height: calc(100vh - 43px);
+	overflow: auto;
+	padding: 12px;
+}
+
+.left .content {
+	height: calc(100vh - 80px);
+}
+
+button {
+	background: #5b9aea;
+    border-radius: 5px;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    font-size: 12pt;
+}
+
+button.back {
+	background: #fcfcfc;
+	color: #999999;
+}
+
+.buttons {
+	text-align: right;
+	margin-top: 8px;
+}
+
+vim-sentence:hover vim-word:not([meaning-id="0"]) {
+	background: #d7edff;
+}
+
+vim-word:not([meaning-id="0"]) {
+	cursor: pointer;
+}
+
+vim-word {
+	transition: 0.3s ease;
+}
+
+vim-sentence vim-word:not([meaning-id="0"]):hover {
+	background: #a4cae9;
+}
+
+vim-word.selected {
+	color: #9d5db7;
+	background: #e5c2f3 !important;
+}
