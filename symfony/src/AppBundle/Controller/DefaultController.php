@@ -46,12 +46,15 @@ class DefaultController extends Controller
      */
     public function addWordAction(Request $request)
     {
-        $word_str = $request->request->get('word');
+        $user = $this->getUser();
+        $data = json_decode($request->getContent(), true);
+
+        $word_str = $data['word'];
         $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Word');
         $word = $repository->findOneBy(
-            array('word' => $word_str, 'user' => 'admin')
+            ['word' => $word_str, 'user' => $user->getUsername()]
         );
 
         if(!$word) {
@@ -70,6 +73,29 @@ class DefaultController extends Controller
             $em->persist($word);
 
             $em->flush();
+        }
+        
+        return $this->json(json_decode($serializer->serialize($word, 'json')));
+    }
+
+    /**
+     * @Route("/getWord")
+     * @Method({"GET"})
+     */
+    public function getWordAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        $word_str = $request->query->get('word');
+        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
+
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Word');
+        $word = $repository->findOneBy(
+            ['word' => $word_str, 'user' => $user->getUsername()]
+        );
+
+        if(!$word) {
+            return new Response(null);
         }
         
         return $this->json(json_decode($serializer->serialize($word, 'json')));

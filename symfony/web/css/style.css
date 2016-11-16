@@ -15,31 +15,55 @@ body {
 }
 
 .right {
-	width: 210px;
+	width: 350px;
+	position: relative;
 }
 
 .left, .right {
 	vertical-align: top;
 }
 
-
 .content {
 	background: white;
 	border-radius: 8px;
-	
-}
-
-.content {
-	height: calc(100vh - 43px);
+	height: calc(100vh - 109px);
 	overflow: auto;
 	padding: 12px;
+}
+
+.vocabulary {
+	position: absolute;
+	z-index: 1;
+	height: 66px;
+	width: 100%;
+	background: white;
+	bottom: 0;
+	box-shadow: 0px -3px 2px white;
+	left: 0;
+	border-radius: 0 0 8px 8px;
+}
+
+.vocabulary button {
+	color: #a569bd;
+	border: 2px solid #a569bd;
+	background: transparent;
+	border-radius: 4px;
+	font-size: 14pt;
+	margin: 20px;
+	transition: 0.3s ease;
+	cursor: pointer;
+}
+
+.vocabulary button:hover, button.in-vocabulary {
+	color: white;
+	background: #a569bd;
 }
 
 .left .content {
 	height: calc(100vh - 80px);
 }
 
-button {
+.left button {
 	background: #5b9aea;
     border-radius: 5px;
     border: none;
@@ -48,7 +72,7 @@ button {
     font-size: 12pt;
 }
 
-button.back {
+.left button.back {
 	background: #fcfcfc;
 	color: #999999;
 }
@@ -77,4 +101,50 @@ vim-sentence vim-word:not([meaning-id="0"]):hover {
 vim-word.selected {
 	color: #9d5db7;
 	background: #e5c2f3 !important;
+}
+
+.right .text {
+	font-size: 14pt;
+}
+
+.right .speaker {
+	width: 30px;
+	vertical-align: middle;
+}
+.right .closer img {
+	width: 18px;
+	vertical-align: middle;
+}
+
+.closer {
+	float: right;
+	cursor: pointer;
+}
+
+.right .main-img {
+	width: 100%;
+	margin: 14px 0;
+}
+
+.right .translation {
+	color: #999999;
+	font-size: 16pt;
+}
+
+.right .examples {
+	margin-left: 0;
+	padding-left: 0;
+	list-style-position: inside;
+	color: #999999;
+}
+
+.right .examples li {
+	font-style: italic;
+	font-weight: lighter;
+	margin: 12px 0;
+}
+
+.right .examples li:before {
+	content: "";
+	margin-left: -16px;
 }

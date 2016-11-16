@@ -6,6 +6,25 @@
 		</div>
 	</div>
 	<div class="right">
-		<div class="content"></div>
+		<div class="content">
+			<div ng-if="word.text">
+				<span class="text">
+					{{word.text}} 
+				</span>
+				<img class="speaker" src="speaker.png"/>
+				<span class="closer" ng-click="hideWord()"><img src="closer.png"></span>
+				<hr>
+				<span class="translation">{{word.translation}}</span>
+				<img class="main-img" src="{{word.images[0]}}">
+				<div class="definition">— {{word.definition}}</div>
+				<ul class="examples">
+					<li ng-repeat="e in word.examples" ng-bind-html="e.example.replace('[', '<b>').replace(']', '</b>')|html">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="vocabulary">
+			<button ng-class="{'in-vocabulary': word.isInVocabulary}" ng-if="word.text" ng-click="addWord()">{{word.isInVocabulary ? 'In vocabulary' : 'Add to vocab.'}}</button>
+		</div>
 	</div>
 </div>
